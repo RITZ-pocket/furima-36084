@@ -18,17 +18,17 @@ has_many:purchases
 
 ## items テーブル
 
-| Colum          | Type      | Option           |
-| -------------- | --------- | ---------------- |
-| name           | string    | null:false       |
-| price          | integer   | null:false       |
-| introduction   | text      | null:false       |
-| category       | integer   | null:false       |
-| item_condition | integer   | null:false       |
-| postage_payer  | integer   | null:false       |
-| shipping_area  | integer   | null:false       |
-| day_to_ship    | integer   | null:false       |
-| user           | reference | foreign_key:true |
+| Colum             | Type      | Option           |
+| ----------------- | --------- | ---------------- |
+| name              | string    | null:false       |
+| price             | integer   | null:false       |
+| introduction      | text      | null:false       |
+| category_id       | integer   | null:false       |
+| item_condition_id | integer   | null:false       |
+| postage_payer_id  | integer   | null:false       |
+| shipping_area_id  | integer   | null:false       |
+| day_to_ship_id    | integer   | null:false       |
+| user              | reference | foreign_key:true |
 
 ## Association
 
@@ -40,7 +40,7 @@ has_one:purchase
 | Colum           | Type      | Option           |
 | ---------------- | --------- | ---------------- |
 | post_code        | string    | null:false       |
-| shipping_area    | integer   | null:false       |
+| shipping_area_id | integer   | null:false       |
 | city             | string    | null:false       |
 | address          | string    | null:false       |
 | building_name    | string    |                  |
@@ -49,7 +49,7 @@ has_one:purchase
 
 ## Association
 
-belongs_to:purchases
+belongs_to:purchase
 
 ## purchases テーブル
 
