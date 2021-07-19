@@ -6,13 +6,15 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true
 
-  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/}
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/} do
     validates :family_name
     validates :first_name
+  end
 
-  with_options presence: true , format: { with: /\A[ァ-ヶー－]+\z/ }
+  with_options presence: true , format: { with: /\A[ァ-ヶー－]+\z/ } do
     validates :family_name_kana
     validates :first_name_kana
+  end
 
   validates :birth_date, presence: true
 
