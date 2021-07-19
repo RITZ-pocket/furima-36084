@@ -41,9 +41,12 @@ RSpec.describe User, type: :model do
     end
     it 'パスワードは、半角英数字混合での入力が必須であること' do
       @user.password = 'aaaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("")
+    end
+    it 'パスワード(確認)は、半角英数字混合での入力が必須であること' do
       @user.password_confirmation = 'aaaaaa'
       @user.valid?
-      
       expect(@user.errors.full_messages).to include("")
     end
     it 'パスワードとパスワード（確認）は、値の一致が必須であること' do
@@ -52,26 +55,42 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
-    it 'お名前（全角）は、名字と名前がそれぞれ必須であること' do
+    it '名字（全角）が必須であること' do
       @user.family_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include()
+    end
+    it '名前（全角）が必須であること' do
       @user.first_name = ''
       @user.valid?
       expect(@user.errors.full_messages).to include()
     end
-    it 'お名前（全角）は、全角（漢字・ひらがな・カタカナ）での入力が必須である' do
+    it '名字（全角）は、全角（漢字・ひらがな・カタカナ）での入力が必須である' do
       @user.family_name = 'zenkaku'
+      @user.valid?
+      expect(@user.errors.full_messages).to include()
+    end
+    it '名前（全角）は、全角（漢字・ひらがな・カタカナ）での入力が必須である' do
       @user.first_name = 'zenkaku'
       @user.valid?
       expect(@user.errors.full_messages).to include()
     end
-    it 'お名前カナ（全角）は、名字と名前がそれぞれ必須であること' do
+    it '名字カナ（全角）が必須であること' do
       @user.family_name = ''
-      @user.first_name = ''
       @user.valid?
       expect(@user.errors.full_messages).to include()
     end
-    it 'お名前カナ（全角）は、全角（カタカナ）での入力が必須であること' do
+    it '名前カナ（全角）がそれぞれ必須であること' do
+      @user.first_name = ''
+      @use.valid?
+      expect(@user.errors.full_messages).to include()
+    end
+    it '名字カナ（全角）は、全角（カタカナ）での入力が必須であること' do
       @user.family_name = 'kana'
+      @user.valid?
+      expect(@user.errors.full_messages).to include ()
+    end
+    it '名前カナ（全角）は、全角（カタカナ）での入力が必須であること' do
       @user.first_name = 'kana'
       @user.valid?
       expect(@user.errors.full_messages).to include ()
