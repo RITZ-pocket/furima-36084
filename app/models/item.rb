@@ -11,7 +11,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :name, :price, :introduction
-    with_options numericality: { other_than:1} do
+    with_options numericality: { other_than:1, message: "can't be blank" } do
       validates :category_id, :day_to_ship_id, :item_condition_id, :postage_payer_id, :shipping_area_id
     end
   end
