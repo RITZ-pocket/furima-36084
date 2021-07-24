@@ -14,32 +14,52 @@ RSpec.describe Item, type: :model do
       it '商品画像を一枚添付することが必須であること' do
       end
       it '商品名が必須であること' do
+        @item.name = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it '商品の説明が必須であること' do
+        @item.introduction = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Introduction can't be blank")
       end
       it 'カテゴリーの情報が必須であること' do
+        @item.category_id = ''
+        @item.valid? 
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態の情報が必須であること' do
+        @item.item_condition_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Item condition can't be blank")
       end
       it '配送料負担の情報が必須であること' do
+        @item.postage_payer_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Postage payer can't be blank")
       end
       it '発送元の地域の情報が必須であること' do
+        @item.shipping_area_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
       it '発送までの日数の情報が必須であること' do
+        @item.day_to_ship_id = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Day to ship can't be blank")
       end
       it '価格の情報が必須であること' do
+        @item.price = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it '価格は¥300~¥9,999,999の間のみ保存可能であること' do
       end
       it '価格は半角数値のみ保存可能であること' do
-      end
-      it '入力された価格によって販売手数料や販売利益の表示が変わること' do
-      end
-      it 'エラーハンドリングができること' do
-      end
-      it 'エラーハンドリングで出品ページに戻っても、入力済みの項目は消えないこと' do
-      end
-      it 'エラーハンドリングの際、重複したエラーメッセージが表示されないこと' do
+        @item.price = 'aaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
+  end
 end
