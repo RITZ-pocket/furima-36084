@@ -10,7 +10,10 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :name, :price, :introduction
+    validates :name, :introduction
+    with_options format: { with: /\A[0-9]+\z/ } do
+      validates :price
+    end
     with_options numericality: { other_than:1, message: "can't be blank" } do
       validates :category_id, :day_to_ship_id, :item_condition_id, :postage_payer_id, :shipping_area_id
     end
