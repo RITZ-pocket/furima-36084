@@ -8,5 +8,6 @@ FactoryBot.define do
     postage_payer_id  { 3 }
     shipping_area_id  { 3 }
     day_to_ship_id    { 3 }
+    user
   end
 end
