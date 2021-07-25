@@ -19,37 +19,37 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が必須であること' do
-        @item.name = ''
+        @item.name = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
       it '商品の説明が必須であること' do
-        @item.introduction = ''
+        @item.introduction = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Introduction can't be blank")
       end
       it 'カテゴリーの情報が必須であること' do
-        @item.category_id = ''
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '商品の状態の情報が必須であること' do
-        @item.item_condition_id = ''
+        @item.item_condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Item condition can't be blank")
       end
       it '配送料負担の情報が必須であること' do
-        @item.postage_payer_id = ''
+        @item.postage_payer_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage payer can't be blank")
       end
       it '発送元の地域の情報が必須であること' do
-        @item.shipping_area_id = ''
+        @item.shipping_area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
       it '発送までの日数の情報が必須であること' do
-        @item.day_to_ship_id = ''
+        @item.day_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Day to ship can't be blank")
       end
