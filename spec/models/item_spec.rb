@@ -14,6 +14,9 @@ RSpec.describe Item, type: :model do
     end
     context '商品の出品ができない時' do
       it '商品画像を一枚添付することが必須であること' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が必須であること' do
         @item.name = ''
@@ -55,18 +58,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it '価格は¥300未満では登録できないこと' do
+      it '価格は¥300未満では登録できない' do
         @item.price = '299'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
-      it '価格は¥9999999より上では登録できないこと' do
+      it '価格は¥9999999より上では登録できない' do
         @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
-      it '価格は半角数値のみ保存可能であること' do
+      it '価格は半角英字では登録できない' do
         @item.price = 'aaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it '価格は全角数字では登録できない' do
+        @item.price = '５００'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it '価格は全角英字では登録できない' do
+        @item.price = 'ａａａ'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
