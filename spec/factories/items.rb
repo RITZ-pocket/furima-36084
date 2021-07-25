@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
     name              { 'item' }
-    price             { '300' }
+    price             { 300 }
     introduction      { 'text' }
     category_id       { 3 }
     item_condition_id { 3 }
