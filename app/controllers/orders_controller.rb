@@ -4,11 +4,20 @@ class OrdersController < ApplicationController
     @items = Item.find(params[:item_id])
   end
 
+  def create
+    @order = Ship.new(order_params)
+    if @order.valid?
+      @order.save
+      retrun redirect_to root_path
+    else
+      render 'index'
+    end
+  end
+
   private
 
-  def item_params
-    params.require(:item).permit(:name, :price, :introduction, :category_id, :day_to_ship_id, :item_condition_id,
-                                 :postage_payer_id, :shipping_area_id, :image).merge(user_id: current_user.id)
+  def order_params
+    params.require(:ship).permit(:post_code, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id)
   end
   
 end
