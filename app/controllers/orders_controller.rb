@@ -5,9 +5,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Ship.new(order_params)
-    if @order.valid?
-      @order.save
+    @ship = Ship.new(ship_params)
+    if @ship.valid?
+      @ship.save
       retrun redirect_to root_path
     else
       render 'index'
@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
+  def ship_params
     params.require(:ship).permit(:post_code, :shipping_area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id)
   end
   
