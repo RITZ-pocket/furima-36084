@@ -1,5 +1,5 @@
 class ItemShip
-  include ActiveModel::model
+  include ActiveModel::Model
   attr_accessor :name, :price, :introduction, :categpry_id, :postage_payer_id, :shipping_area_id, :day_to_ship_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :purchase_id
 
   with_options presence: true do
