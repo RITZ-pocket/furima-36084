@@ -1,6 +1,6 @@
 class ItemShip
   include ActiveModel::Model
-  attr_accessor :name, :price, :introduction, :categpry_id, :postage_payer_id, :shipping_area_id, :day_to_ship_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :purchase_id
+  attr_accessor :image, :name, :price, :introduction, :category_id, :item_condition_id, :postage_payer_id, :shipping_area_id, :day_to_ship_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :purchase_id
 
   with_options presence: true do
     validates :name, :introduction, :image
@@ -24,7 +24,7 @@ class ItemShip
   end
 
   def save
-    item = Item.create( name: name, price: price, introduction: introduction, category_id: category_id, item_condition_id: item_condition_id, postage_payer_id: postage_payer_id, shipping_area_id: shipping_area_id, day_to_ship_id: day_to_ship_id, user_id: user.id)
-    Ship.create( post_code: post_code, shipping_area_id: shipping_area_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchase_id: purchase.id)
+    item = Item.create( image: image, name: name, price: price, introduction: introduction, category_id: category_id, item_condition_id: item_condition_id, postage_payer_id: postage_payer_id, shipping_area_id: shipping_area_id, day_to_ship_id: day_to_ship_id, user_id: user_id)
+    Ship.create( post_code: post_code, shipping_area_id: shipping_area_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchase_id: purchase_id)
   end
 end
