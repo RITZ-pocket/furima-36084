@@ -1,6 +1,6 @@
 class ItemShip
   include ActiveModel::Model
-  attr_accessor :image, :name, :price, :introduction, :category_id, :item_condition_id, :postage_payer_id, :shipping_area_id, :day_to_ship_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :purchase_id
+  attr_accessor :image, :name, :price, :introduction, :category_id, :item_condition_id, :postage_payer_id, :shipping_area_id, :day_to_ship_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :purchase_id, :item_id
 
   with_options presence: true do
     validates :name, :introduction, :image
