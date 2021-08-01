@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :set_item
 
   def index
-    @item = Item.find(params[:item_id])
     @ship_purchase = ShipPurchase.new
   end
 
@@ -19,5 +19,9 @@ class OrdersController < ApplicationController
 
   def purchase_params
     params.require(:ship_purchase).permit(:shipping_area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+  end
+
+  def  set_item
+    @item = Item.find(params[:item_id])
   end
 end
