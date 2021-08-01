@@ -1,6 +1,6 @@
 class ShipPurchase
   include ActiveModel::Model
-  attr_accessor :shipping_area_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :purchase_id, :item_id
+  attr_accessor :shipping_area_id, :user_id, :post_code, :city, :address, :building_name, :phone_number
 
   with_options presence: true do
     validates :city, :address
@@ -16,7 +16,7 @@ class ShipPurchase
   end
 
   def save
-    ship = Ship.create( post_code: post_code, shipping_area_id: shipping_area_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchase_id: purchase_id)
-    Purchase.create( user_id: user_id, item_id: item_id)
+    purchase = Purchase.create( user_id: user_id, item_id: item_id)
+    Ship.create( post_code: post_code, shipping_area_id: shipping_area_id, city: city, address: address, building_name: building_name, phone_number: phone_number, purchase_id: purchase.id)
   end
 end
