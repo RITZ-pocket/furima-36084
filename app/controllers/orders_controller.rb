@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def create
     @ship_purchase = ShipPurchase.new(purchase_params)
     if @ship_purchase.valid? 
-      @purchase.save
+      @ship_purchase.save
       return redirect_to root_path
     else
       render 'index'
