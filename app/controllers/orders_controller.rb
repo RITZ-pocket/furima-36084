@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
 
   def index
-    @item_ship = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
+    @ship_purchase = ShipPurchase.new
   end
 
   def create
-    @ship = ItemShip.new(ship_params)
-    if @ship.save
+    @ship_purchase = ShipPurchase.new(ship_params)
+    if @ship_purchase.save
       return redirect_to root_path
     else
       render 'index'
@@ -16,7 +17,7 @@ class OrdersController < ApplicationController
   private
 
   def ship_params
-    params.require(:item).permit(:name, :price, :introduction, :category_id, :item_condition_id, :postage_payer_id, :day_to_ship_id, :post_code, :shipping_area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id:params[:id])
+    params.require(:ship_purchase).permit( :shipping_area_id, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id:params[:id])
   end
   
 end
