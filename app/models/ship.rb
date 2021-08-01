@@ -10,5 +10,8 @@ class Ship < ApplicationRecord
     with_options format: { with: /\A\d{10,11}\z/ } do
       validates :phone_number
     end
+    with_options numericality: {other_than: 1, message: "can't be blank"} do
+      validates :shipping_area_id
+    end
   end
 end
