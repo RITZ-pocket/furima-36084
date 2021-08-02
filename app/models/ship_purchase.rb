@@ -1,6 +1,6 @@
 class ShipPurchase
   include ActiveModel::Model
-  attr_accessor :shipping_area_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :item_id
+  attr_accessor :shipping_area_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :item_id, :token
 
   with_options presence: true do
     validates :city, :address
