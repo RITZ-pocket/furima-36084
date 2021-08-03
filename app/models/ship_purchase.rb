@@ -3,7 +3,7 @@ class ShipPurchase
   attr_accessor :shipping_area_id, :user_id, :post_code, :city, :address, :building_name, :phone_number, :item_id, :token
 
   with_options presence: true do
-    validates :city, :address
+    validates :city, :address, :user_id, :item_id
     with_options format: { with: /\A\d{3}[-]\d{4}\z/ } do
       validates :post_code
     end
