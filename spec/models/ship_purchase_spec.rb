@@ -11,7 +11,7 @@ RSpec.describe ShipPurchase, type: :model do
   describe '商品購入' do
     context '商品が購入できる時' do
       it '必要事項が記入されているときに商品が購入できる' do
-        expect(@ship_purchase, item, user).to be_valid
+        expect(@ship_purchase).to be_valid
       end
     end
     context '商品の購入ができない時' do
