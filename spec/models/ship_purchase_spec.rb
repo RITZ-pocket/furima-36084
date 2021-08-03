@@ -15,7 +15,7 @@ RSpec.describe ShipPurchase, type: :model do
       end
     end
     context '商品の購入ができない時' do
-      it "トークンが必須であること" do
+      it 'トークンが必須であること' do
         @ship_purchase.token = nil
         @ship_purchase.valid?
         expect(@ship_purchase.errors.full_messages).to include("Token can't be blank")
@@ -28,17 +28,17 @@ RSpec.describe ShipPurchase, type: :model do
       it '郵便番号はハイフンを含めた半角文字列のみ保存可能なこと' do
         @ship_purchase.post_code = '1111111'
         @ship_purchase.valid?
-        expect(@ship_purchase.errors.full_messages).to include("Post code is invalid")
+        expect(@ship_purchase.errors.full_messages).to include('Post code is invalid')
       end
       it '郵便番号は、「3桁ハイフン4桁」の半角文字列のみ保存可能なこと' do
         @ship_purchase.post_code = '111-111'
         @ship_purchase.valid?
-        expect(@ship_purchase.errors.full_messages).to include("Post code is invalid")
+        expect(@ship_purchase.errors.full_messages).to include('Post code is invalid')
       end
       it '郵便番号は、半角文字列のみ保存可能なこと' do
         @ship_purchase.post_code = '１１１ー１１１１'
         @ship_purchase.valid?
-        expect(@ship_purchase.errors.full_messages).to include("Post code is invalid")
+        expect(@ship_purchase.errors.full_messages).to include('Post code is invalid')
       end
       it '都道府県が必須であること' do
         @ship_purchase.shipping_area_id = 1
@@ -67,17 +67,17 @@ RSpec.describe ShipPurchase, type: :model do
       it '電話番号は、9桁以下の半角数字では保存できないこと' do
         @ship_purchase.phone_number = '111111111'
         @ship_purchase.valid?
-        expect(@ship_purchase.errors.full_messages).to include("Phone number is invalid")
+        expect(@ship_purchase.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号は、12桁以上の半角数字では保存できないこと' do
         @ship_purchase.phone_number = '111111111111'
         @ship_purchase.valid?
-        expect(@ship_purchase.errors.full_messages).to include("Phone number is invalid")
+        expect(@ship_purchase.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号は、全角数字では保存できないこと' do
         @ship_purchase.phone_number = '１１１１１１１１１１'
         @ship_purchase.valid?
-        expect(@ship_purchase.errors.full_messages).to include("Phone number is invalid")
+        expect(@ship_purchase.errors.full_messages).to include('Phone number is invalid')
       end
     end
   end

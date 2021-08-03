@@ -7,10 +7,10 @@ class OrdersController < ApplicationController
 
   def create
     @ship_purchase = ShipPurchase.new(purchase_params)
-    if @ship_purchase.valid? 
+    if @ship_purchase.valid?
       pay_item
       @ship_purchase.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render 'index'
     end
@@ -19,15 +19,17 @@ class OrdersController < ApplicationController
   private
 
   def purchase_params
-    params.require(:ship_purchase).permit(:shipping_area_id, :post_code, :city, :address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:ship_purchase).permit(:shipping_area_id, :post_code, :city, :address, :building_name, :phone_number).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
-  def  set_item
+  def set_item
     @item = Item.find(params[:item_id])
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: set_item[:price],
       card: purchase_params[:token],
