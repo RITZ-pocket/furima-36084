@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_action :user_logout, only: :index
   before_action :set_item
   before_action :move_to_index, only: :index
 
@@ -36,6 +37,10 @@ class OrdersController < ApplicationController
       card: purchase_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def user_logout
+    redirect_to new_user_session_path unless user_signed_in?
   end
 
   def move_to_index
