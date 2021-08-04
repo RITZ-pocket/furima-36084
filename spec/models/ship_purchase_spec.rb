@@ -13,6 +13,10 @@ RSpec.describe ShipPurchase, type: :model do
       it '必要事項が記入されているときに商品が購入できる' do
         expect(@ship_purchase).to be_valid
       end
+      it '建物名は任意であること' do
+        @ship_purchase.building_name = ''
+        expect(@ship_purchase).to be_valid
+      end
     end
     context '商品の購入ができない時' do
       it 'トークンが必須であること' do
@@ -54,10 +58,6 @@ RSpec.describe ShipPurchase, type: :model do
         @ship_purchase.address = ''
         @ship_purchase.valid?
         expect(@ship_purchase.errors.full_messages).to include("Address can't be blank")
-      end
-      it '建物名は任意であること' do
-        @ship_purchase.building_name = ''
-        expect(@ship_purchase).to be_valid
       end
       it '電話番号が必須であること' do
         @ship_purchase.phone_number = ''
