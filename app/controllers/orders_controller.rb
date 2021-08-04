@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_item
+  before_action :move_to_index, only: :index
 
   def index
     @ship_purchase = ShipPurchase.new
@@ -37,5 +38,11 @@ class OrdersController < ApplicationController
       card: purchase_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 end
