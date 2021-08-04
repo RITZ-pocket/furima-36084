@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :user_logout, only: :index
+  before_action :user_logout
   before_action :set_item
-  before_action :move_to_index, only: :index
+  before_action :move_to_index
 
   def index
     @ship_purchase = ShipPurchase.new
