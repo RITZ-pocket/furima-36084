@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
 
   def index
     @ship_purchase = ShipPurchase.new
+    if current_user == @item.user
+      redirect_to root_path
+    end
   end
 
   def create
