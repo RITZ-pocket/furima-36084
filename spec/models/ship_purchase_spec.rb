@@ -79,6 +79,16 @@ RSpec.describe ShipPurchase, type: :model do
         @ship_purchase.valid?
         expect(@ship_purchase.errors.full_messages).to include('Phone number is invalid')
       end
+      it 'user_idが空では購入できないこと' do
+        @ship_purchase.user_id = ''
+        @ship_purchase.valid?
+        expect(@ship_purchase.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では購入できないこと' do
+        @ship_purchase.item_id = ''
+        @ship_purchase.valid?
+        expect(@ship_purchase.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
